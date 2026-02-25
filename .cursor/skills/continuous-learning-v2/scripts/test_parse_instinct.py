@@ -8,7 +8,10 @@ _spec = importlib.util.spec_from_file_location(
     "instinct_cli",
     os.path.join(os.path.dirname(__file__), "instinct-cli.py"),
 )
+assert _spec is not None
+assert _spec.loader is not None
 _mod = importlib.util.module_from_spec(_spec)
+# mypy: _spec and _spec.loader asserted non-None
 _spec.loader.exec_module(_mod)
 parse_instinct_file = _mod.parse_instinct_file
 
