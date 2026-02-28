@@ -4,7 +4,7 @@
       "command": "npx",
       "args": ["-y", "@modelcontextprotocol/server-github"],
       "env": {
-        "GITHUB_PERSONAL_ACCESS_TOKEN": "YOUR_GITHUB_PAT_HERE"
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_PERSONAL_ACCESS_TOKEN}"
       },
       "description": "GitHub operations - PRs, issues, repos"
     },
@@ -80,11 +80,19 @@
       "command": "npx",
       "args": ["-y", "@modelcontextprotocol/server-filesystem", "/path/to/your/projects"],
       "description": "Filesystem operations (set your path)"
+    },
+    "auggie": {
+      "type": "http",
+      "url": "https://api.augmentcode.com/mcp",
+      "headers": {
+        "Authorization": "Bearer ${AUGMENT_API_KEY}"
+      },
+      "description": "Augment Code MCP server"
     }
   },
   "_comments": {
     "usage": "Copy the servers you need to your ~/.claude.json mcpServers section",
-    "env_vars": "Replace YOUR_*_HERE placeholders with actual values",
+    "env_vars": "Set values via environment variables (example: GITHUB_PERSONAL_ACCESS_TOKEN, AUGMENT_API_KEY)",
     "disabling": "Use disabledMcpServers array in project config to disable per-project",
     "context_warning": "Keep under 10 MCPs enabled to preserve context window"
   }
